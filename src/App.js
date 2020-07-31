@@ -4,6 +4,9 @@ import {
   FormControl,
   Select
 } from "@material-ui/core"
+
+import InfoBox from './InfoBox'
+import Map from './Map'
 import './App.css';
 
 function App() {
@@ -14,11 +17,13 @@ function App() {
     const getCountriesData = async() => {
       await fetch ("https://disease.sh/v3/covid-19/countries")
       .then ((response) => response.json())
+
       .then((data) => {
         const countries = data.map((country) => ({
             name: country.country, // United States, United Kingdom
             value: country.countryInfo.iso2 // UK, USA, FR
           }));
+
           setCountries(countries)
       });
     };
@@ -27,11 +32,7 @@ function App() {
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
-
-    console.log("Yoooo", countryCode);
-
     setCountry(countryCode);
-    
   };
 
   return (
@@ -55,7 +56,12 @@ function App() {
         </FormControl>
       </div>
 
-      <div className ="app__stats">  
+      <div className ="app__stats">
+        <InfoBox title="Coronavirus Cases" cases={123} total={2000}/>
+        <InfoBox title="Recovered" cases={1234} total={3000}/>
+        <InfoBox title="Deaths" cases={1235} total={4000}/>
+      </div>
+
       {/* Infobox = COVID Cases */}
       {/* Infobox = COVID Recoveries */}
       {/* Infobox */}
@@ -64,7 +70,7 @@ function App() {
       {/* Graph */}
 
       {/* Map */}
-      </div>
+      <Map />
     </div>
   );
 }
