@@ -1,8 +1,11 @@
 # Coronavirus Worldwide Tracker
 
 This is a react app that extracts data from [Disease.sh](disease.sh) that allows a user to navigate through to get the following:
+* An interaactive map that shows the most affected countries. Allows to navigate on each country to know the individual statistics of each country.
+* A periodic graph that shows the increase or decrease in cases across several parts of the world.
+* An information box that shows the total cases in a particular country in descending order. 
 
-
+## To
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
