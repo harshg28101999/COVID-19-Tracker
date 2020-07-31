@@ -1,5 +1,8 @@
 # Coronavirus Worldwide Tracker
 
+This is a react app that extracts data from [Disease.sh](disease.sh) that allows a user to navigate through to get the following:
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
