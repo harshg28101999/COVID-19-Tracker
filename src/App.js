@@ -14,6 +14,7 @@ import './App.css';
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
+  const [countryInfo, setCountryInfo] = useState({});
 
   useEffect(() => {
     const getCountriesData = async() => {
@@ -35,11 +36,29 @@ function App() {
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
     setCountry(countryCode);
+
+    // https://disease.sh/v3/covid-19/all
+    // https://disease.sh/v3/covid-19/countries/[COUNTRY_CODE]
+
+    const url = 
+    countryCode === 'worldwide' 
+      ? 'https://disease.sh/v3/covid-19/all' 
+      : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+
+    await fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      setCountry(countryCode);
+
+      //All the data from the country response.
+      setCountryInfo(data);    
+    })
   };
 
   return (
     <div className="app">
       <div className="app__left">
+        
         <div className="app__header">
           <h1>COVID-19 Tracker</h1>
           <FormControl className="app_dropdown">
