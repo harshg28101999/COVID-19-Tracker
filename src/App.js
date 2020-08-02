@@ -11,6 +11,8 @@ import InfoBox from './InfoBox';
 import Map from './Map';
 import './App.css';
 import Table from './Table';
+import {sortData} from './util'
+import LineGraph from './LineGraph';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -37,7 +39,8 @@ function App() {
             value: country.countryInfo.iso2 // UK, USA, FR
           }));
           
-          setTableData(data); 
+          const sortedData = sortData(data);
+          setTableData(sortedData); 
           setCountries(countries)
       });
     };
@@ -59,7 +62,7 @@ function App() {
     await fetch(url)
     .then(response => response.json())
     .then(data => {
-      
+
       setCountry(countryCode);
       setCountryInfo(data);    
     })
@@ -123,7 +126,9 @@ function App() {
         <CardContent>
           <h3>Live Cases by country</h3>
           <Table countries={tableData}/>
+
           <h3>Worldwide new cases</h3>
+          <LineGraph />
           {/* Graph */}
         </CardContent>
       </Card>
