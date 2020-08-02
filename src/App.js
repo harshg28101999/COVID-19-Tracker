@@ -130,6 +130,7 @@ function App() {
           <h3>Worldwide new cases</h3>
           <LineGraph />
           {/* Graph */}
+          
         </CardContent>
       </Card>
 
